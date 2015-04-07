@@ -1,0 +1,39 @@
+<template name="clan">
+  <div class="page auth">
+    <nav>
+      <div class="nav-group">
+        <a href="#" class="js-menu nav-item"><span class="icon-list-unordered"></span></a>
+      </div>
+    </nav>
+
+    <div class="content-scrollable">
+      <div class="wrapper-auth">
+        <h1 class="title-auth">{{name}}</h1>
+        
+        <ol>
+          {{#each members}}
+            <li><input type="checkbox" class="optin" checked="{{optin}}">{{profile.name}} <a href="#" class="kick">kick</a></li>
+          {{else}}
+            <li>Empty.</li>
+          {{/each}}
+        </ol>
+        
+        <hr>
+        
+        <h1 class="title-auth">Add new member</h1>
+        
+        <ul class="pending">
+          {{#each pending}}
+            <li>{{name}}, token: {{token}} <a href="#" class="cancel">cancel</a></li>
+          {{/each}}
+        </ul>
+        
+        <form class="add-new-mmeber">
+          <input type="text" name="playername" placeholder="Player name">
+          <button class="generate-token">Add</button>
+        </form>
+        
+      </div>
+    </div>
+  </div>
+</template>

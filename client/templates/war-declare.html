@@ -1,0 +1,48 @@
+<template name="warDeclare">
+  <div class="page auth">
+    <nav>
+      <div class="nav-group">
+        <a href="#" class="js-menu nav-item"><span class="icon-list-unordered"></span></a>
+      </div>
+    </nav>
+
+    <div class="content-scrollable">
+      <div class="wrapper-auth">
+        <h1 class="title-auth">Declare New War</h1>
+        <!--p class="subtitle-auth" >Joining allows you to make sdfsdf lists</p-->
+
+        <form>
+          {{#if errorMessages}}
+            <div class="list-errors">
+              {{#each errorMessages}}
+                <div class="list-item">{{this}}</div>
+              {{/each}}
+            </div>
+          {{/if}}
+
+          <div class="input-symbol  {{errorClass 'enemy'}}">
+            <input type="text" name="enemy" placeholder="Enemy clan's name" />
+            <span class="icon-enemy" title="Enemy clan's name"></span>
+          </div>
+          
+          <div class="input-symbol">
+            <span class="icon-enemy" title="War size"></span>
+            <select name="size" id="warsize" class="form_style">
+              <option value="50" selected="">50 vs 50</option>
+              <option value="45">45 vs 45</option>
+              <option value="40">40 vs 40</option>
+              <option value="35">35 vs 35</option>
+              <option value="30">30 vs 30</option>
+              <option value="25">25 vs 25</option>
+              <option value="20">20 vs 20</option>
+              <option value="15">15 vs 15</option>
+              <option value="10">10 vs 10</option>
+            </select>
+          </div>
+          
+          <button type="submit" class="btn-primary">Declare!</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</template>
