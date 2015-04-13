@@ -16,8 +16,6 @@
             <a class="js-logout btn-secondary">Logout</a>
           {{/if}}
         </div>
-        
-        <a href="{{pathFor 'clan' _id=clanID}}">{{clanName}}</a>
       {{else}}
         <div class="btns-group">
           <a href="{{pathFor 'signin'}}" class="btn-secondary">Sign In</a>
@@ -26,6 +24,8 @@
       {{/if}}
 
       <div class="list-todos">
+        <a href="{{pathFor 'clan' _id=clanID}}">{{clanName}}</a>
+
         <a href="{{pathFor 'warDeclare'}}" class="js-new-list link-list-new"><span class="icon-plus"></span>Declare New War</a>
 
         {{#each wars}}

@@ -9,7 +9,7 @@
     <div class="content-scrollable">
       <div class="wrapper-auth">
         <h1 class="title-auth">Declare New War</h1>
-        <!--p class="subtitle-auth" >Joining allows you to make sdfsdf lists</p-->
+        <p class="subtitle-auth" >{{getQuoteAboutWar}}</p>
 
         <form>
           {{#if errorMessages}}
@@ -25,7 +25,18 @@
             <span class="icon-enemy" title="Enemy clan's name"></span>
           </div>
           
-          <div class="input-symbol">
+          <div class="input-optin">
+            <ol>
+              {{#each members}}
+                <li><input type="checkbox" class="optin" checked="{{optin}}">{{profile.name}}</li>
+              {{else}}
+                <li>Your clan is empty.</li>
+              {{/each}}
+            </ol>
+            <span>Count: {{optinCount}}</span>
+          </div>
+          
+          {{!<div class="input-symbol">
             <span class="icon-enemy" title="War size"></span>
             <select name="size" id="warsize" class="form_style">
               <option value="50" selected="">50 vs 50</option>
@@ -38,7 +49,7 @@
               <option value="15">15 vs 15</option>
               <option value="10">10 vs 10</option>
             </select>
-          </div>
+          </div>}}
           
           <button type="submit" class="btn-primary">Declare!</button>
         </form>

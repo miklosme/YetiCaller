@@ -1,5 +1,5 @@
 <template name="war">
-  <div class="page auth">
+  <div class="page war">
     <nav>
       <div class="nav-group">
         <a href="#" class="js-menu nav-item"><span class="icon-list-unordered"></span></a>
@@ -7,9 +7,16 @@
     </nav>
 
     <div class="content-scrollable">
-      <div class="wrapper-auth">
-        <h1 class="title-auth">{{enemyName}}</h1>
-        <p class="subtitle-auth" >{{size}} vs. {{size}}</p>
+      <div class="wrapper-war">
+        <h1 class="title">{{enemyName}}</h1>
+        <p class="subtitle" >{{size}} vs. {{size}}</p>
+        
+        <ol class="targets">
+          {{#each targets}}
+            {{> target}}
+          {{/each}}
+        </ol>
+        
         <a href="#" class="delete-war">delete</a>
       </div>
     </div>

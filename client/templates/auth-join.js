@@ -72,7 +72,7 @@ Template.join.events({
       return;
     }
     
-    var clanID;
+    var clanID, regtoken;
 
     if (Session.get(IS_NEW_CLAN)) {
       clanID = Clans.insert({
@@ -84,7 +84,7 @@ Template.join.events({
         }
       });
     } else {
-      var regtoken = RegistrationTokens.findOne({token: token});
+      regtoken = RegistrationTokens.findOne({token: token});
       
       if (!regtoken) {
         return Session.set(ERRORS_KEY, {'regtoken': 'Token is not valid!'});
@@ -93,8 +93,6 @@ Template.join.events({
       nickName = regtoken.name;
       clanName = Clans.findOne({_id: regtoken.clanID}).name;
       clanID = regtoken.clanID;
-      
-      RegistrationTokens.remove({_id: regtoken._id});
     }
 
     Accounts.createUser({
@@ -109,6 +107,9 @@ Template.join.events({
     }, function(error) {
       if (error) {
         return Session.set(ERRORS_KEY, {'none': error.reason});
+      }
+      if (regtoken) {
+        RegistrationTokens.remove({_id: regtoken._id});
       }
       Router.go('home');
     });
