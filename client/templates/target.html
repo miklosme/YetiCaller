@@ -1,16 +1,36 @@
 <template name="target">
   <li class="target-container">
       <div class="stars-container">
-        <span class="attacker">attacker name</span>
-        <div class="stars">
-          <span class="star {{star1}}"></span>
-          <span class="star {{star2}}"></span>
-          <span class="star {{star3}}"></span>
-        </div>
+        {{#if anyAttacks}}
+          <span class="attacker">{{bestAttackerName}}</span>
+          <div class="stars">
+            <span class="star {{star "1"}}"></span>
+            <span class="star {{star "2"}}"></span>
+            <span class="star {{star "3"}}"></span>
+          </div>
+        {{else}}
+          <span class="info">No attacks yet.</span>
+        {{/if}}
       </div>
       <div class="register-container">
-        <span class="booked-name">booked name</span>
-        <a href="#" class="register">Make reservation</a>
+        {{#if isReserved}}
+          <span class="booked-name">{{bookedForName}}</span>
+          <a href="#" class="delete">delete</a><br>
+          <a href="#" class="set-result star0">stars: 0</a><br>
+          <a href="#" class="set-result star1">stars: 1</a><br>
+          <a href="#" class="set-result star2">stars: 2</a><br>
+          <a href="#" class="set-result star3">stars: 3</a>
+        {{else}}
+          {{#if noPendingAttack}}
+            {{#if anyAttacksLeft}}
+              <a href="#" class="register">Make reservation</a>
+            {{else}}
+              <span class="no-more-attacks">No more attacks.</span>
+            {{/if}}
+          {{else}}
+            <span class="no-more-attacks">Pending.</span>
+          {{/if}}
+        {{/if}}
       </div>
   </li>
 </template>

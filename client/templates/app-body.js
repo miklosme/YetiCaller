@@ -69,13 +69,16 @@ Template.appBody.helpers({
     return email.substring(0, email.indexOf('@'));
   },*/
   userName: function() {
-    return Meteor.user().profile.name;
+    if (Meteor.user())
+      return Meteor.user().profile.name;
   },
   clanName: function() {
-    return Meteor.user().profile.clanName;
+    if (Meteor.user())
+      return Meteor.user().profile.clanName;
   },
   clanID: function() {
-    return Meteor.user().profile.clanID;
+    if (Meteor.user())
+      return Meteor.user().profile.clanID;
   },
   userMenuOpen: function() {
     return Session.get(USER_MENU_KEY);
