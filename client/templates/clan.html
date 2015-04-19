@@ -1,5 +1,5 @@
 <template name="clan">
-  <div class="page auth">
+  <div class="page clan">
     <nav>
       <div class="nav-group">
         <a href="#" class="js-menu nav-item"><span class="icon-list-unordered"></span></a>
@@ -7,27 +7,51 @@
     </nav>
 
     <div class="content-scrollable">
-      <div class="wrapper-auth">
-        <h1 class="title-auth">{{name}}</h1>
-        
-        <ol>
+      <div class="wrapper-clan">
+        <h1 class="title">{{name}}</h1>
+
+        <table>
+          <tr>
+            <th>Opt-in</th>
+            <th class="name-column">Name</th>
+            <th>{{#if isLeader}}Action{{/if}}</th>
+          </tr>
           {{#each members}}
-            <li><input type="checkbox" class="optin" checked="{{optin}}">{{profile.name}} <a href="#" class="kick">kick</a></li>
+            <tr>
+              <td><input type="checkbox" class="optin" checked="{{optin}}"></td>
+              <td class="name">{{profile.name}} <b>{{rank}}</b></td>
+              <td>
+                {{#if isLeader}}
+                  <a href="#" class="promote">[promote]</a>
+                  <a href="#" class="demote">[demote]</a>
+                  <a href="#" class="kick">[kick]</a>
+                {{/if}}
+              </td>
+            </tr>
           {{else}}
-            <li>Empty.</li>
+            <tr><td>Empty.</td></tr>
           {{/each}}
-        </ol>
-        
+        </table>
+
         <hr>
-        
-        <h1 class="title-auth">Add new member</h1>
-        
-        <ul class="pending">
+
+        <h1 class="title">Add new member</h1>
+
+        <table class="pending">
+          <tr>
+            <th>Name</th>
+            <th>Token</th>
+            <th></th>
+          </tr>
           {{#each pending}}
-            <li>{{name}}, token: {{token}} <a href="#" class="cancel">cancel</a></li>
+            <tr>
+              <td>{{name}}</td>
+              <td>{{token}}</td>
+              <td><a href="#" class="cancel">cancel</a></td>
+            </tr>
           {{/each}}
-        </ul>
-        
+        </table>
+
         <form class="add-new-member">
           <div class="input-symbol">
             <input type="text" name="playername" placeholder="Player name">
@@ -35,7 +59,7 @@
           </div>
           <button class="generate-token">Add</button>
         </form>
-        
+
       </div>
     </div>
   </div>

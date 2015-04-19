@@ -38,7 +38,7 @@ Template.join.events({
     var confirm = template.$('[name=confirm]').val();
 
     var errors = {};
-    
+
     if (!Session.get(IS_NEW_CLAN)) {
       if (!token) {
         errors.regtoken = 'Registration token must be set, if you joining to your clan. You can get this from your clan Leaders';
@@ -49,12 +49,12 @@ Template.join.events({
       if (!nickName) {
         errors.nickName = 'Your username in game is required';
       }
-      
+
       if (!clanName) {
         errors.clanName = 'Clan name required';
       }
     }
-    
+
     if (! email) {
       errors.email = 'Email required';
     }
@@ -71,8 +71,8 @@ Template.join.events({
     if (_.keys(errors).length) {
       return;
     }
-    
-    var clanID, regtoken;
+
+    var clanID, regtoken, rank;
 
     if (Session.get(IS_NEW_CLAN)) {
       clanID = Clans.insert({
@@ -83,16 +83,18 @@ Template.join.events({
           return Session.set(ERRORS_KEY, {'none': error.reason});
         }
       });
+      rank = RANK_LEADER;
     } else {
       regtoken = RegistrationTokens.findOne({token: token});
-      
+
       if (!regtoken) {
         return Session.set(ERRORS_KEY, {'regtoken': 'Token is not valid!'});
       }
-      
+
       nickName = regtoken.name;
       clanName = Clans.findOne({_id: regtoken.clanID}).name;
       clanID = regtoken.clanID;
+      rank = RANK_MEMBER;
     }
 
     Accounts.createUser({
@@ -102,7 +104,8 @@ Template.join.events({
         name: nickName,
         clanID: clanID,
         clanName: clanName,
-        optin: true
+        optin: true,
+        rank: rank
       }
     }, function(error) {
       if (error) {
