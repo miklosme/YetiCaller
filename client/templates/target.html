@@ -2,7 +2,7 @@
   <li class="target-container">
       <div class="stars-container">
         {{#if anyAttacks}}
-          <span class="attacker">{{bestAttackerName}}</span>
+          <span class="attacker"><b>{{bestAttackerName}}</b></span>
           <div class="stars">
             <span class="star {{star "1"}}"></span>
             <span class="star {{star "2"}}"></span>
@@ -15,15 +15,21 @@
       <div class="register-container">
         {{#if isReserved}}
           <span class="booked-name">{{bookedForName}}</span>
-          <a href="#" class="delete">delete</a><br>
-          <a href="#" class="set-result star0">stars: 0</a><br>
-          <a href="#" class="set-result star1">stars: 1</a><br>
-          <a href="#" class="set-result star2">stars: 2</a><br>
-          <a href="#" class="set-result star3">stars: 3</a>
+          {{#if canHandleReservation}}
+            <a href="#" class="delete">cancel</a><br>
+            <a href="#" class="set-result star0">stars: 0</a><br>
+            <a href="#" class="set-result star1">stars: 1</a><br>
+            <a href="#" class="set-result star2">stars: 2</a><br>
+            <a href="#" class="set-result star3">stars: 3</a>
+          {{/if}}
         {{else}}
           {{#if noPendingAttack}}
             {{#if anyAttacksLeft}}
-              <a href="#" class="register">Make reservation</a>
+              {{#if notAttackedThisYet}}
+                <a href="#" class="register">Make reservation</a>
+              {{else}}
+                <span class="no-more-attacks">Attacked already.</span>
+              {{/if}}
             {{else}}
               <span class="no-more-attacks">No more attacks.</span>
             {{/if}}

@@ -1,12 +1,14 @@
 Meteor.methods({
   registerAttack: function(warID, index) {
+    var user = Meteor.user();
     Wars.update({
       _id: warID,
       'targets.index': index
     }, {
       $push: {
         'targets.$.attacks': {
-          name: Meteor.user().profile.name,
+          name: user.profile.name,
+          id: user._id,
           stars: 0,
           isAttackDone: false
         }
@@ -41,7 +43,7 @@ Meteor.methods({
       $inc: {
         'participants.$.attacksLeft': -1
       }
-    });    
+    });
   }
 });
 

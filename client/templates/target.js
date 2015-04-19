@@ -31,6 +31,25 @@ Template.target.helpers({
   },
   'anyAttacks': function() {
     return !!this.bestAttackerName;
+  },
+  'canHandleReservation': function() {
+    var user = Meteor.user();
+    if (!user)
+      return false;
+
+    if (user._id === this.bookedForID) {
+      return true;
+    }
+
+    var rank = user.profile.rank || RANK_MEMBER;
+    return (rank === RANK_LEADER) || (rank === RANK_COLEADER);
+  },
+  'notAttackedThisYet': function() {
+    var userID = Meteor.user()._id;
+    var alreadyTried = _.any(this.attacks, function(t) {
+      return t.id === userID;
+    });
+    return !alreadyTried;
   }
 });
 
