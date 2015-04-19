@@ -1,5 +1,5 @@
 <template name="warDeclare">
-  <div class="page auth">
+  <div class="page war-declare">
     <nav>
       <div class="nav-group">
         <a href="#" class="js-menu nav-item"><span class="icon-list-unordered"></span></a>
@@ -7,9 +7,9 @@
     </nav>
 
     <div class="content-scrollable">
-      <div class="wrapper-auth">
-        <h1 class="title-auth">Declare New War</h1>
-        <p class="subtitle-auth" >{{getQuoteAboutWar}}</p>
+      <div class="wrapper-war-declare">
+        <h1 class="title">Declare New War</h1>
+        <p class="subtitle" >{{getQuoteAboutWar}}</p>
 
         <form>
           {{#if errorMessages}}
@@ -24,18 +24,19 @@
             <input type="text" name="enemy" placeholder="Enemy clan's name" />
             <span class="icon-enemy" title="Enemy clan's name"></span>
           </div>
-          
+
           <div class="input-optin">
-            <ol>
+            <table>
               {{#each members}}
-                <li><input type="checkbox" class="optin" checked="{{optin}}">{{profile.name}}</li>
-              {{else}}
-                <li>Your clan is empty.</li>
+                <tr>
+                  <td><input type="checkbox" class="optin" checked="{{optin}}"></td>
+                  <td class="left">{{profile.name}}</td>
+                </tr>
               {{/each}}
-            </ol>
-            <span>Count: {{optinCount}}</span>
+            </table>
+            <p class="subtitle">Opt-in count: {{optinCount}}</p>
           </div>
-          
+
           {{!<div class="input-symbol">
             <span class="icon-enemy" title="War size"></span>
             <select name="size" id="warsize" class="form_style">
@@ -50,7 +51,7 @@
               <option value="10">10 vs 10</option>
             </select>
           </div>}}
-          
+
           <button type="submit" class="btn-primary">Declare!</button>
         </form>
       </div>
