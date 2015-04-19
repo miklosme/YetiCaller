@@ -33,32 +33,34 @@
           {{/each}}
         </table>
 
-        <hr>
+        {{#if isLeader}}
+          <hr>
 
-        <h1 class="title">Add new member</h1>
+          <h1 class="title">Add new member</h1>
 
-        <table class="pending">
-          <tr>
-            <th>Name</th>
-            <th>Token</th>
-            <th></th>
-          </tr>
-          {{#each pending}}
+          <table class="pending">
             <tr>
-              <td>{{name}}</td>
-              <td>{{token}}</td>
-              <td><a href="#" class="cancel">cancel</a></td>
+              <th>Name</th>
+              <th>Token</th>
+              <th></th>
             </tr>
-          {{/each}}
-        </table>
+            {{#each pending}}
+              <tr>
+                <td>{{name}}</td>
+                <td>{{token}}</td>
+                <td><a href="#" class="cancel">cancel</a></td>
+              </tr>
+            {{/each}}
+          </table>
 
-        <form class="add-new-member">
-          <div class="input-symbol">
-            <input type="text" name="playername" placeholder="Player name">
-            <span class="icon-enemy" title="Name of the new member"></span>
-          </div>
-          <button class="generate-token">Add</button>
-        </form>
+          <form class="add-new-member">
+            <div class="input-symbol">
+              <input type="text" name="playername" placeholder="Player name">
+              <span class="icon-enemy" title="Name of the new member"></span>
+            </div>
+            <button class="generate-token">Add</button>
+          </form>
+        {{/if}}
 
       </div>
     </div>

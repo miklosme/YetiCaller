@@ -10,14 +10,14 @@
       <div class="wrapper-war">
         <h1 class="title">{{enemyName}}</h1>
         <p class="subtitle" >{{size}} vs. {{size}}</p>
-        
+
         <ol class="targets">
           {{#each targets}}
             {{> target}}
           {{/each}}
         </ol>
-        
-        <a href="#" class="delete-war">delete</a>
+
+        {{#if isLeader}}<a href="#" class="delete-war">delete</a>{{/if}}
       </div>
     </div>
   </div>

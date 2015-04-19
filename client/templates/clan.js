@@ -16,10 +16,6 @@ Template.clan.helpers({
       case RANK_ADMIN:     return '(admin)';
       default:             return '';
     }
-  },
-  isLeader: function() {
-    var rank = Meteor.user().profile.rank;
-    return (rank === RANK_LEADER) || (rank === RANK_COLEADER);
   }
 });
 
