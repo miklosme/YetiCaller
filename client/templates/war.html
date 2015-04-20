@@ -11,13 +11,19 @@
         <h1 class="title">{{enemyName}}</h1>
         <p class="subtitle" >{{size}} vs. {{size}}</p>
 
+        {{#if strategyShouldDisplayed}}
+          <textarea class="war-strategy {{editingStrategy}}"
+            readonly="{{#unless isLeader}}readonly{{/unless}}"
+            placeholder="Edit war strategy...">{{warStrategy}}</textarea>
+        {{/if}}
+
         <ol class="targets">
           {{#each targets}}
             {{> target}}
           {{/each}}
         </ol>
 
-        {{#if isLeader}}<a href="#" class="delete-war">delete</a>{{/if}}
+        {{#if isLeader}}<a href="#" class="delete-war">Delete this war</a>{{/if}}
       </div>
     </div>
   </div>

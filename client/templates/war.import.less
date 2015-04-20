@@ -22,6 +22,31 @@
       padding-right: 5px;
       width: 100%;
     }
+
+    .transition-properties(...) {
+      @props: ~`"@{arguments}".replace(/[\[\]]/g, '')`;
+      -webkit-transition-property: @props;
+      -moz-transition-property: @props;
+      -o-transition-property: @props;
+      transition-property: @props;
+  }
+
+    textarea.war-strategy {
+      border: 1px solid #d2edf4;
+      background-color: #d2edf4;
+      padding: 3px;
+      width: 80%;
+      height: 110px;
+      resize: none;
+      .transition(0.4s, ease);
+      .transition-properties(border, background-color);
+
+      &.editing {
+        border: 1px solid #ccc;
+        background-color: white;
+        resize: vertical;
+      }
+    }
   }
 
   .title {

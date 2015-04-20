@@ -8,6 +8,16 @@ Template.clan.helpers({
   optin: function() {
     return this.profile.optin;
   },
+  canChangeOptin: function() {
+    if (isLeader())
+      return true;
+
+    if (this._id === Meteor.user()._id) {
+      return true;
+    }
+
+    return false;
+  },
   rank: function() {
     switch (this.profile.rank) {
       case RANK_ELDER:     return '(elder)';

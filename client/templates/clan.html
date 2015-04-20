@@ -18,7 +18,11 @@
           </tr>
           {{#each members}}
             <tr>
-              <td><input type="checkbox" class="optin" checked="{{optin}}"></td>
+              <td>
+                <input type="checkbox"
+                  class="optin" checked="{{optin}}"
+                  disabled="{{#unless canChangeOptin}}disabled{{/unless}}">
+              </td>
               <td class="name">{{profile.name}} <b>{{rank}}</b></td>
               <td>
                 {{#if isLeader}}

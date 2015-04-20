@@ -89,7 +89,8 @@ Template.warDeclare.events({
       size: size,
       createdAt: new Date(),
       targets: targets,
-      participants: participants
+      participants: participants,
+      warStrategyHeight: 100
     }, function(error, _id) {
       if (error) {
         return Session.set(ERRORS_KEY, {'none': error.reason});
@@ -97,23 +98,8 @@ Template.warDeclare.events({
 
       Router.go('war', {_id: _id});
     });
-
-    /*Wars.insert({
-      name: "vs. " + enemy,
-      myClanName: "444 Streampunks",
-      enemyName: enemy,
-      size: size,
-      createdAt: new Date(),
-      owner: "444 Streampunks"
-    }, function(error, _id) {
-      if (error) {
-        return Session.set(ERRORS_KEY, {'none': error.reason});
-      }
-
-      Router.go('war', {_id: _id});
-    });*/
   },
   'change input.optin': function (event) {
-     Meteor.call("setOptin", this._id, event.target.checked);
+    Meteor.call("setOptin", this._id, event.target.checked);
   }
 });
