@@ -50,6 +50,9 @@ Template.target.helpers({
       return t.id === userID;
     });
     return !alreadyTried;
+  },
+  'myReservedTarget': function() {
+    return (this.bookedForID === Meteor.user()._id) ? 'my-target' : '';
   }
 });
 
