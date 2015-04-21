@@ -53,6 +53,9 @@ Template.target.helpers({
   },
   'myReservedTarget': function() {
     return (this.bookedForID === Meteor.user()._id) ? 'my-target' : '';
+  },
+  'messages': function() {
+    return Chat.find({warID: WAR_ID, targetIndex: this.index}, {sort: {createdAt: 1}});
   }
 });
 
@@ -62,29 +65,40 @@ Template.target.events({
 
     Meteor.call('registerAttack', WAR_ID, this.index);
   },
-  'click .register-container .delete': function(event, template) {
+  'click .register-container .cancel': function(event, template) {
     event.preventDefault();
 
-    Meteor.call('deleteAttack', WAR_ID, this.index);
+    Meteor.call('cancelAttack', WAR_ID, this.index);
   },
   'click .register-container .set-result.star0': function(event, template) {
     event.preventDefault();
 
-    Meteor.call('setResult', WAR_ID, this.index, 0);
+    Meteor.call('setResult', WAR_ID, this.index, this.bookedForID, 0);
   },
   'click .register-container .set-result.star1': function(event, template) {
     event.preventDefault();
 
-    Meteor.call('setResult', WAR_ID, this.index, 1);
+    Meteor.call('setResult', WAR_ID, this.index, this.bookedForID, 1);
   },
   'click .register-container .set-result.star2': function(event, template) {
     event.preventDefault();
 
-    Meteor.call('setResult', WAR_ID, this.index, 2);
+    Meteor.call('setResult', WAR_ID, this.index, this.bookedForID, 2);
   },
   'click .register-container .set-result.star3': function(event, template) {
     event.preventDefault();
 
-    Meteor.call('setResult', WAR_ID, this.index, 3);
+    Meteor.call('setResult', WAR_ID, this.index, this.bookedForID, 3);
+  },
+  'submit': function(event, template) {
+    event.preventDefault();
+
+    console.log("ok");
+
+    var $input = template.$('input[type="text"]');
+    var message = $input.val();
+
+    Meteor.call('registerTargetChatMessage', message, WAR_ID, this.index);
+    $input.val(''); // TODO: just if successfull
   }
 });

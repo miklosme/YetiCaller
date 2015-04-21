@@ -1,5 +1,6 @@
 <template name="target">
-  <li class="target-container {{myReservedTarget}}">
+  <li>
+    <div class="target-container {{myReservedTarget}}">
       <div class="stars-container">
         {{#if anyAttacks}}
           <span class="attacker"><b>{{bestAttackerName}}</b></span>
@@ -14,13 +15,13 @@
       </div>
       <div class="register-container">
         {{#if isReserved}}
-          <span class="booked-name">{{bookedForName}}</span>
+          <span class="booked-name {{#unless canHandleReservation}}full-height{{/unless}}">{{bookedForName}}</span>
           {{#if canHandleReservation}}
-            <a href="#" class="delete">cancel</a><br>
-            <a href="#" class="set-result star0">stars: 0</a><br>
-            <a href="#" class="set-result star1">stars: 1</a><br>
-            <a href="#" class="set-result star2">stars: 2</a><br>
-            <a href="#" class="set-result star3">stars: 3</a>
+            <a href="#" class="cancel">cancel</a><br>
+            <a href="#" class="set-result star0">Stars: 0</a>
+            <a href="#" class="set-result star1">Stars: 1</a><br>
+            <a href="#" class="set-result star2">Stars: 2</a>
+            <a href="#" class="set-result star3">Stars: 3</a>
           {{/if}}
         {{else}}
           {{#if noPendingAttack}}
@@ -38,5 +39,33 @@
           {{/if}}
         {{/if}}
       </div>
+    </div>
+    <div class="target-extra">
+      <div class="chat">
+        <div class="messages">
+          {{#each messages}}
+            <span class="message"><b>{{name}}</b>: {{message}}</span>
+            <br>
+          {{else}}
+            <span class="message">No messages.</span>
+            <br>
+          {{/each}}
+        </div>
+        <form>
+          <input type="text" placeholder="Type, then enter...">
+        </form>
+      </div>
+      <div class="history">
+        {{#each attacks}}
+          <span class="name">
+            <b>{{name}}</b>
+            {{#if isAttackDone}}: {{stars}} stars.{{else}} not attacked yet.{{/if}}
+          </span>
+          <br>
+        {{else}}
+          <span cass="name">No attacks yet.</span>
+        {{/each}}
+      </div>
+    </div>
   </li>
 </template>

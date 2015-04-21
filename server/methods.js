@@ -19,9 +19,10 @@ Meteor.methods({
       }
     });
   },
-  deleteAttack: _deleteAttack,
-  setResult: function(warID, index, result) {
-    _deleteAttack(warID, index);
+  cancelAttack: removeReservation, // TODO: ide nem remove kell, hanem törlés az attacks-ból
+  setResult: function(warID, index, playerID, result) {
+    removeReservation(warID, index);
+    handleAttacks(warID, index, playerID, result);
     // TODO: set "attacks" array data
     var war = Wars.findOne(warID);
     var target = _.findWhere(war.targets, {index: index});
@@ -38,7 +39,7 @@ Meteor.methods({
     }
     Wars.update({
       _id: warID,
-      'participants._id': Meteor.user()._id
+      'participants._id': playerID
     }, {
       $inc: {
         'participants.$.attacksLeft': -1
@@ -47,7 +48,7 @@ Meteor.methods({
   }
 });
 
-function _deleteAttack(warID, index) {
+function removeReservation(warID, index) {
   Wars.update({
     _id: warID,
     'targets.index': index
@@ -58,3 +59,40 @@ function _deleteAttack(warID, index) {
     }
   });
 }
+
+function handleAttacks(warID, index, playerID, result) {
+  /*var $set = {};
+  $set['targets.'+(index-1)+'.attacks.$.stars'] = result;
+  $set['targets.'+(index-1)+'.attacks.$.isAttackDone'] = true;
+  Wars.update({
+    _id: warID,
+    'targets.index': index,
+    'targets.attacks.id': playerID
+  }, {
+    $set: $set
+  });*/
+
+  /*Wars.update({
+    _id: warID,
+    'targets.index': index,
+    'targets.attacks.id': playerID
+  }, {
+    $set: {
+      'targets.$.attacks.$.stars': result,
+      'targets.$.attacks.$.isAttackDone': true,
+    }
+  });*/
+}
+
+Meteor.methods({
+  'registerTargetChatMessage': function(message, warID, targetIndex) {
+
+    Chat.insert({
+      name: Meteor.user().profile.name,
+      message: message,
+      warID: warID,
+      targetIndex: targetIndex,
+      createdAt: new Date()
+    });
+  }
+});
