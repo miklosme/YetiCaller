@@ -12,17 +12,24 @@
 
     & > table {
       margin: 0 auto;
+      counter-reset: line-number;
 
       th {
         padding: 15px;
         font-size: 120%;
       }
 
-      td {
+      td.name {
+        text-align: left;
+        padding-left: 10px;
 
-        &.name {
-          text-align: left;
-          padding-left: 10px;
+        &:before {
+          content: counter(line-number) ".";
+          counter-increment: line-number;
+          text-align: right;
+          display: inline-block;
+          width: 25px;
+          padding-right: 10px;
         }
       }
     }

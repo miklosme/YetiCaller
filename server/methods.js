@@ -83,16 +83,3 @@ function handleAttacks(warID, index, playerID, result) {
     }
   });*/
 }
-
-Meteor.methods({
-  'registerTargetChatMessage': function(message, warID, targetIndex) {
-
-    Chat.insert({
-      name: Meteor.user().profile.name,
-      message: message,
-      warID: warID,
-      targetIndex: targetIndex,
-      createdAt: new Date()
-    });
-  }
-});

@@ -34,3 +34,11 @@ Template.war.helpers({
     return isLeader();
   }
 });
+
+Template.war.onRendered(function () {
+  /*var elevator = new Elevator({
+    element: document.querySelector('.elevator-button'),
+    mainAudio: '/audio/ding.mp3',
+    endAudio: '/audio/elevator-music.mp3'
+  });*/
+});
