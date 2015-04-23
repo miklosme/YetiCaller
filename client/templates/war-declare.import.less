@@ -11,13 +11,21 @@
       width: 300px;
     }
 
-    .input-optin {
-      & > table {
-        margin: 30px auto;
+    table#members {
+      counter-reset: line-number;
+      margin: 30px auto;
 
-        .left {
-          padding-left: 10px;
-          text-align: left;
+      td.name {
+        text-align: left;
+        padding-left: 10px;
+
+        &:before {
+          content: counter(line-number) ".";
+          counter-increment: line-number;
+          text-align: right;
+          display: inline-block;
+          width: 25px;
+          padding-right: 10px;
         }
       }
     }

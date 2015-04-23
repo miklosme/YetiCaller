@@ -26,13 +26,15 @@
           </div>
 
           <div class="input-optin">
-            <table>
-              {{#each members}}
-                <tr>
-                  <td><input type="checkbox" class="optin" checked="{{optin}}"></td>
-                  <td class="left">{{profile.name}}</td>
-                </tr>
-              {{/each}}
+            <table id="members">
+              <tbody>
+                {{#each members}}
+                  <tr data-id="{{this._id}}">
+                    <td><input type="checkbox" class="optin" checked="{{optin}}"></td>
+                    <td class="name">{{profile.name}}</td>
+                  </tr>
+                {{/each}}
+              </tbody>
             </table>
             <p class="subtitle">Opt-in count: {{optinCount}}</p>
           </div>

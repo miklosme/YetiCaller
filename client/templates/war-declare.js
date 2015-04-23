@@ -1,5 +1,25 @@
 var ERRORS_KEY = 'warDeclareErrors';
 
+/*Template.warDeclare.onRendered(function() {
+  makeMembersSortable();
+});*/
+
+Template.warDeclare.onRendered(function() {
+  var user = Meteor.user();
+  if (user && user.profile.rank >= RANK_ELDER) {
+    var members = this.$('table#members tbody')[0];
+    var that = this;
+    dragula([members]).on('drop', function (el) {
+      var order = {};
+      that.$('table#members tbody tr').each(function(index) {
+        order[$(this).data('id')] = index;
+      });
+      var clanID = user.profile.clanID;
+      Meteor.call('reorderClan', clanID, order);
+    });
+  }
+});
+
 Template.warDeclare.onCreated(function() {
   Session.set(ERRORS_KEY, {});
 });
@@ -12,8 +32,16 @@ Template.warDeclare.helpers({
     return Session.get(ERRORS_KEY)[key] && 'error';
   },
   members: function() {
-    var clanID = Meteor.user().profile.clanID;
-    return Meteor.users.find({"profile.clanID": clanID}, {sort: {"profile.name": 1}});
+    var user = Meteor.user();
+    if (user) {
+      var clanID = user.profile.clanID;
+      var order = Clans.findOne(clanID).order || {};
+      var unsorted = Meteor.users.find({"profile.clanID": clanID}).fetch();
+      var sorted = _.sortBy(unsorted, function(m) {
+        return order[m._id] || 1;
+      });
+      return sorted;
+    }
   },
   optinCount: function() {
     var clanID = Meteor.user().profile.clanID;
