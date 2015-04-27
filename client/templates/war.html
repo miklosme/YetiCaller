@@ -17,6 +17,9 @@
             placeholder="Edit war strategy...">{{warStrategy}}</textarea>
         {{/if}}
 
+        <p class="stars-acquired">Stars acquired: <b>{{starsAcquired}}</b></p>
+        <p class="attacks-left">Attacks left: <b>{{attacksLeft}}</b></p>
+
         <ol class="targets">
           {{#each targets}}
             {{> target}}

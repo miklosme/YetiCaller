@@ -4,7 +4,6 @@ BETA
 
 - Elevator feature
 - welcome page: stats
-- war summary (szerzett csillagok, attacks left)
 - target history bugfix
 
 HIGH
