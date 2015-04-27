@@ -1,16 +1,20 @@
 TODO
 
-HIGH
-- nincs változó link
-- target info bezárás
-- mini war summary (szerzett csillagok, attacks left)
-- target history
+BETA
+
+- Elevator feature
 - welcome page: stats
+
+HIGH
 - kód duplikációt megszüntetni a clan.js és a war-declare.js között (player ordering)
 - automatizálás
+- gyorsnézet
 
 NORMAL
+- test: multi clan support :dddd
 - Academy áttekintés
+- automatikusan a foglalt targethez hajtás
+- target info bezárás
 - delete war csak <15 percnél
 - jogosultságok
 - war history

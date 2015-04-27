@@ -56,6 +56,9 @@ Template.target.helpers({
   },
   'messages': function() {
     return Chat.find({warID: WAR_ID, targetIndex: this.index}, {sort: {createdAt: 1}});
+  },
+  'reversedAttacks': function() {
+    return this.attacks.slice().reverse();
   }
 });
 

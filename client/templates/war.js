@@ -32,6 +32,20 @@ Template.war.helpers({
     }
 
     return isLeader();
+  },
+  'attacksLeft': function() {
+    var sum = 0;
+    _.each(this.participants, function(t) {
+      sum += t.attacksLeft;
+    });
+    return sum;
+  },
+  'starsAcquired': function() {
+    var sum = 0;
+    _.each(this.targets, function(t) {
+      sum += t.starCount;
+    });
+    return sum;
   }
 });
 

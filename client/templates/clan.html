@@ -46,24 +46,26 @@
 
           <h1 class="title">Add new member</h1>
 
-          <table class="pending">
-            <tr>
-              <th>Name</th>
-              <th>Token</th>
-              <th></th>
-            </tr>
-            {{#each pending}}
+          {{#if pending.count}}
+            <table class="pending">
               <tr>
-                <td>{{name}}</td>
-                <td>{{token}}</td>
-                <td><a href="#" class="cancel">cancel</a></td>
+                <th>Name</th>
+                <th>Token</th>
+                <th></th>
               </tr>
-            {{/each}}
-          </table>
+              {{#each pending}}
+                <tr>
+                  <td>{{name}}</td>
+                  <td>{{token}}</td>
+                  <td><a href="#" class="cancel">cancel</a></td>
+                </tr>
+              {{/each}}
+            </table>
+          {{/if}}
 
           <form class="add-new-member">
             <div class="input-symbol">
-              <input type="text" name="playername" placeholder="Player name">
+              <input type="text" name="playername" autocomplete="off" placeholder="Player name">
               <span class="icon-enemy" title="Name of the new member"></span>
             </div>
             <button class="generate-token">Add</button>
