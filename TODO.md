@@ -4,7 +4,6 @@ BETA
 
 - Elevator feature
 - welcome page: stats
-- target history bugfix
 
 HIGH
 - kód duplikációt megszüntetni a clan.js és a war-declare.js között (player ordering)
