@@ -2,8 +2,8 @@ TODO
 
 BETA
 
-- Elevator feature
 - welcome page: stats
+- test: multi clan support :dddd
 
 HIGH
 - kód duplikációt megszüntetni a clan.js és a war-declare.js között (player ordering)
@@ -11,7 +11,7 @@ HIGH
 - gyorsnézet
 
 NORMAL
-- test: multi clan support :dddd
+- Elevator feature
 - Academy áttekintés
 - automatikusan a foglalt targethez hajtás
 - target info bezárás

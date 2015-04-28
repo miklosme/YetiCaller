@@ -19,7 +19,11 @@ Template.war.events({
   },
   'keyup textarea': _.throttle(function(event) {
     Wars.update(this._id, {$set: {warStrategy: event.target.value}});
-  }, 300)
+  }, 300),
+  'click .elevator-button': function(e, template) {
+    e.preventDefault();
+    template.$('.content-scrollable').scrollTop(0);
+  }
 });
 
 Template.war.helpers({

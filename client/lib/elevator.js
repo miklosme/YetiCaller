@@ -9,7 +9,8 @@
  * Elevator.js
  *********************************************/
 
-var Elevator = (function() {
+//var Elevator = (function() {
+Elevator = (function() {
 
     'use strict';
 
@@ -63,8 +64,8 @@ var Elevator = (function() {
         var timeSoFar = time - startTime;
         var easedPosition = easeInOutQuad(timeSoFar, startPosition, -startPosition, duration);
 
-        //window.scrollTo(0, easedPosition);
-        document.getElementsByClassName('content-scrollable')[0].scrollTop = easedPosition;
+        window.scrollTo(0, easedPosition);
+        //document.getElementsByClassName('content-scrollable')[0].scrollTop = easedPosition;
 
         if( timeSoFar < duration ) {
             requestAnimationFrame(animateLoop);
