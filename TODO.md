@@ -2,7 +2,6 @@ TODO
 
 BETA
 
-- welcome page: stats
 - test: multi clan support :dddd
 
 HIGH

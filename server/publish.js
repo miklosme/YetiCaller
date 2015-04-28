@@ -14,7 +14,7 @@ Meteor.publish('chat', function() {
   return Chat.find({});
 });
 
-Meteor.publish("allUserData", function () {
+Meteor.publish('allUserData', function () {
     return Meteor.users.find({}, {fields: {'profile': 1}});
 });
 

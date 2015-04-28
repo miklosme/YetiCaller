@@ -1,5 +1,22 @@
+var stats = {};
+
+Template.welcome.onRendered(function () {
+  Session.set('statsReady', false);
+
+  Meteor.call('getWelcomePageStats', function(error, result) {
+    stats = result;
+    Session.set('statsReady', true);
+  })
+});
+
 Template.welcome.helpers({
-  clanCount: function() {
+  'statsReady': function() {
+    return Session.get('statsReady');
+  },
+  'stats': function() {
+    return stats;
+  }
+  /*clanCount: function() {
     return 0;
   },
   playerCount: function() {
@@ -10,5 +27,5 @@ Template.welcome.helpers({
   },
   chatMessageCount: function() {
     return 0;
-  }
-})
+  }*/
+});

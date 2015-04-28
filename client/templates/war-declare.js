@@ -9,7 +9,11 @@ Template.warDeclare.onRendered(function() {
   if (user && user.profile.rank >= RANK_ELDER) {
     var members = this.$('table#members tbody')[0];
     var that = this;
-    dragula([members]).on('drop', function (el) {
+    dragula([members], {
+      moves: function (el, container, handle) {
+        return handle.className === 'name';
+      }
+    }).on('drop', function (el) {
       var order = {};
       that.$('table#members tbody tr').each(function(index) {
         order[$(this).data('id')] = index;

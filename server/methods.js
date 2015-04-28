@@ -45,6 +45,18 @@ Meteor.methods({
         'participants.$.attacksLeft': -1
       }
     });
+  },
+  getWelcomePageStats: function() {
+    var clanCount = Clans.find().count();
+    var playerCount = Meteor.users.find().count();
+    var warCount = Wars.find().count();
+    var chatMessageCount = Chat.find().count();
+    return {
+      clanCount: clanCount,
+      playerCount: playerCount,
+      warCount: warCount,
+      chatMessageCount: chatMessageCount
+    };
   }
 });
 
