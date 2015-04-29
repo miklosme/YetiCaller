@@ -15,16 +15,18 @@ Meteor.publish('clans', function() {
   if (this.userId) {
     return Clans.find(getClanID(this.userId));
   } else {
-    this.ready();
+    return Clans.find(); // TODO: coz of register
+    //this.ready();
   }
 });
 
 Meteor.publish('regtokens', function() {
-  if (this.userId) {
+  return RegistrationTokens.find(); // TODO
+  /*if (this.userId) {
     return RegistrationTokens.find({clanID: getClanID(this.userId)});
   } else {
     this.ready();
-  }
+  }*/
 });
 
 Meteor.publish('chat', function() {
