@@ -96,12 +96,11 @@ Template.target.events({
   'submit': function(event, template) {
     event.preventDefault();
 
-    console.log("ok");
-
     var $input = template.$('input[type="text"]');
     var message = $input.val();
+    var clanID = Template.parentData(2).friendlyID;
 
-    Meteor.call('registerTargetChatMessage', message, WAR_ID, this.index);
+    Meteor.call('registerTargetChatMessage', clanID, WAR_ID, this.index, message);
     $input.val(''); // TODO: just if successfull
   }
 });

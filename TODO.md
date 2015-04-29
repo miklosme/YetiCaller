@@ -19,6 +19,7 @@ NORMAL
 - war history
 - statisztikák
 - foglalás trade
+- placeholder (example) war
 
 LOW
 - notifications (email + push)

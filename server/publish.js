@@ -1,21 +1,50 @@
+function getClanID(userId) {
+  var user = Meteor.users.findOne(userId);
+  return user.profile.clanID;
+}
+
 Meteor.publish('wars', function() {
-  return Wars.find({});
+  if (this.userId) {
+    return Wars.find({friendlyID: getClanID(this.userId)});
+  } else {
+    this.ready();
+  }
 });
 
 Meteor.publish('clans', function() {
-  return Clans.find({});
+  if (this.userId) {
+    return Clans.find(getClanID(this.userId));
+  } else {
+    this.ready();
+  }
 });
 
 Meteor.publish('regtokens', function() {
-  return RegistrationTokens.find({});
+  if (this.userId) {
+    return RegistrationTokens.find({clanID: getClanID(this.userId)});
+  } else {
+    this.ready();
+  }
 });
 
 Meteor.publish('chat', function() {
-  return Chat.find({});
+  if (this.userId) {
+    return Chat.find({clanID: getClanID(this.userId)});
+  } else {
+    this.ready();
+  }
 });
 
 Meteor.publish('allUserData', function () {
-    return Meteor.users.find({}, {fields: {'profile': 1}});
+  if (this.userId) {
+    return Meteor.users.find({
+      'profile.clanID': getClanID(this.userId)
+    }, {
+      fields: {'profile': 1}
+    });
+  } else {
+    this.ready();
+  }
 });
 
 /*Meteor.publish('privateLists', function() {

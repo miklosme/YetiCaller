@@ -92,7 +92,7 @@ Template.join.events({
       }
 
       nickName = regtoken.name;
-      clanName = Clans.findOne({_id: regtoken.clanID}).name;
+      clanName = Clans.findOne(regtoken.clanID).name;
       clanID = regtoken.clanID;
       rank = RANK_MEMBER;
     }
