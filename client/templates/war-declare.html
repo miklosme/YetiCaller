@@ -26,6 +26,7 @@
           </div>
 
           <div class="input-optin">
+            {{#if members.count}}
             <table id="members">
               <tbody>
                 {{#each members}}
@@ -37,6 +38,7 @@
               </tbody>
             </table>
             <p class="subtitle">Opt-in count: {{optinCount}}</p>
+            {{/if}}
           </div>
 
           {{!<div class="input-symbol">
