@@ -3,7 +3,7 @@ TODO
 HIGH
 
 - apk
-- insecure (!! regtokent ne küldje ki kliensre, serveren kezelje)
+- insecure (!! regtokent ne küldje ki kliensre, szerveren kezelje)
 - automatizálás
 - gyorsnézet (egy screenen az egész war)
 - foglalás trade
