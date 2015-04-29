@@ -6,6 +6,8 @@
       </div>
     </nav>
 
+    <div id="top"></div>
+
     <div class="content-scrollable">
       <div class="wrapper-war">
         <h1 class="title">{{enemyName}}</h1>
@@ -26,9 +28,9 @@
           {{/each}}
         </ol>
 
-        {{#if isLeader}}<a href="#" class="delete-war">Delete this war</a>{{/if}}
+        <a href="#" class="elevator-button">Back to top</a>
 
-        <div class="elevator-button">Back to Top</div>
+        {{#if isLeader}}<a href="#" class="delete-war">Delete this war</a>{{/if}}
       </div>
     </div>
   </div>

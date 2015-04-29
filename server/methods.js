@@ -45,6 +45,18 @@ Meteor.methods({
         'participants.$.attacksLeft': -1
       }
     });
+  },
+  getWelcomePageStats: function() {
+    var clanCount = Clans.find().count();
+    var playerCount = Meteor.users.find().count();
+    var warCount = Wars.find().count();
+    var chatMessageCount = Chat.find().count();
+    return {
+      clanCount: clanCount,
+      playerCount: playerCount,
+      warCount: warCount,
+      chatMessageCount: chatMessageCount
+    };
   }
 });
 
@@ -61,16 +73,16 @@ function removeReservation(warID, index) {
 }
 
 function handleAttacks(warID, index, playerID, result) {
-  /*var $set = {};
-  $set['targets.'+(index-1)+'.attacks.$.stars'] = result;
-  $set['targets.'+(index-1)+'.attacks.$.isAttackDone'] = true;
-  Wars.update({
-    _id: warID,
-    'targets.index': index,
-    'targets.attacks.id': playerID
-  }, {
+  var $set = {};
+  $set['targets.' + (index - 1) + '.attacks.$.stars'] = result;
+  $set['targets.' + (index - 1) + '.attacks.$.isAttackDone'] = true;
+  var $query = {};
+  $query['_id'] = warID;
+  $query['targets.' + (index - 1) + '.index'] = index;
+  $query['targets.' + (index - 1) + '.attacks.id'] = playerID;
+  Wars.update($query, {
     $set: $set
-  });*/
+  });
 
   /*Wars.update({
     _id: warID,

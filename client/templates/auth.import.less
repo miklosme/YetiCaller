@@ -1,15 +1,19 @@
 .page.auth {
   text-align: center;
-  
+
   .hidden {
     display: none;
   }
-  
+
   .input-reg-chooser, .input-optin {
     margin-bottom: 60px;
   }
 
   .content-scrollable { background: @color-tertiary; }
+
+  .list-errors {
+    width: 100%;
+  }
 
   .wrapper-auth {
     padding-top: 4em;
@@ -48,16 +52,9 @@
           width: 100%;
         }
       }
-    }
-    .list-errors {
-      margin-top: -2rem;
-      .list-item {
-        .title-caps;
-        background: @color-note;
-        color: @color-negative;
-        font-size: .625em; // 10px
-        margin-bottom: 1px;
-        padding: .7rem 0;
+
+      button {
+        max-width: 400px;
       }
     }
   }

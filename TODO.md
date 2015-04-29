@@ -1,27 +1,25 @@
 TODO
 
-BETA
-
-- Elevator feature
-- welcome page: stats
-
 HIGH
-- kód duplikációt megszüntetni a clan.js és a war-declare.js között (player ordering)
+
+- apk
+- insecure (!! regtokent ne küldje ki kliensre, serveren kezelje)
 - automatizálás
-- gyorsnézet
+- gyorsnézet (egy screenen az egész war)
+- foglalás trade
+- Academy áttekintés
 
 NORMAL
-- test: multi clan support :dddd
-- Academy áttekintés
+- Elevator feature
 - automatikusan a foglalt targethez hajtás
 - target info bezárás
-- delete war csak <15 percnél
-- jogosultságok
 - war history
 - statisztikák
-- foglalás trade
+- placeholder (example) war
+- kód duplikációt megszüntetni a clan.js és a war-declare.js között (player ordering)
 
 LOW
+- delete war csak <15 percnél
 - notifications (email + push)
 - chat (facebook szerű)
 - loottarget

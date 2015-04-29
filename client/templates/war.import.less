@@ -38,6 +38,7 @@
       width: 80%;
       height: 110px;
       resize: none;
+      -webkit-appearance: none; // ios safari inner shadow
       .transition(0.4s, ease);
       .transition-properties(border, background-color);
 
@@ -71,5 +72,20 @@
   .subtitle {
     color: @color-medium-well;
     margin: 0 15% 3rem;
+  }
+
+  .elevator-button {
+    display: block;
+    width: 100%;
+    margin: 40px 0;
+  }
+
+  .delete-war {
+    .border-radius(3px);
+    color: #fff;
+    background-color: #FF5050;
+    margin: 2px 3px 30px;
+    padding: 2px 4px;
+    display: inline-block;
   }
 }

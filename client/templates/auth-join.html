@@ -8,11 +8,11 @@
 
     <div class="content-scrollable">
       <div class="wrapper-auth">
-        <h1 class="title-auth">Register.</h1>
+        <h1 class="title-auth">Register</h1>
         <p class="subtitle-auth" >Here you can join to your clan, or create it, if not yet done.</p>
 
         <form>
-        
+
           <div class="input-reg-chooser">
             <input type="radio" class="reg-type" name="reg-type" id="newclan" value="newclan" checked="checked">
             <label class="reg-type-label" for="newclan">Create my clan</label>
@@ -20,7 +20,7 @@
             <input type="radio" class="reg-type" name="reg-type" id="joinclan" value="joinclan">
             <label class="reg-type-label" for="joinclan">Join my clan</label>
           </div>
-      
+
           {{#if errorMessages}}
             <div class="list-errors">
               {{#each errorMessages}}
@@ -28,17 +28,17 @@
               {{/each}}
             </div>
           {{/if}}
-          
+
           <div class="input-symbol {{joinClanClass}} {{errorClass 'regtoken'}}">
             <input type="text" name="token" placeholder="Registration Token" />
             <span class="icon-email" title="Token provided by your Clan leader"></span>
           </div>
-          
+
           <div class="input-symbol {{newClanClass}} {{errorClass 'nickName'}}">
             <input type="text" name="nickname" placeholder="Player Name" />
             <span class="icon-email" title="Your Name in the Game"></span>
           </div>
-          
+
           <div class="input-symbol {{newClanClass}} {{errorClass 'clanName'}}">
             <input type="text" name="clanname" placeholder="Clan Name" />
             <span class="icon-email" title="Your Clan's Name"></span>

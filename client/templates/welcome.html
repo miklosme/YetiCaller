@@ -9,11 +9,15 @@
     <div class="content-scrollable">
       <div class="wrapper-auth">
         <h1 class="title-auth">Welcome!</h1>
-        <p class="subtitle-auth">A better Clash of Clans War manager tool.</p>
-        <p class="subtitle-auth">Registered clans: {{clanCount}}</p>
-        <p class="subtitle-auth">Registered players: {{playerCount}}</p>
-        <p class="subtitle-auth">Wars created: {{warCount}}</p>
-        <p class="subtitle-auth">Chat messages written: {{chatMessageCount}}</p>
+        {{#if statsReady}}
+          {{#with stats}}
+          <p class="subtitle-auth">A better Clash of Clans War manager tool.</p>
+          <p class="subtitle-auth">Registered clans: {{clanCount}}</p>
+          <p class="subtitle-auth">Registered players: {{playerCount}}</p>
+          <p class="subtitle-auth">Wars created: {{warCount}}</p>
+          <p class="subtitle-auth">Chat messages written: {{chatMessageCount}}</p>
+          {{/with}}
+        {{/if}}
       </div>
     </div>
   </div>
