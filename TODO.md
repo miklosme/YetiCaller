@@ -2,14 +2,15 @@ TODO
 
 HIGH
 
-- apk
-- insecure (!! regtokent ne küldje ki kliensre, szerveren kezelje)
 - automatizálás
-- gyorsnézet (egy screenen az egész war)
 - foglalás trade
 - Academy áttekintés
+- target historyban azt is írja, h mikor ment le a támadás
+- apk
 
 NORMAL
+- insecure (!! regtokent ne küldje ki kliensre, szerveren kezelje)
+- gyorsnézet (egy screenen az egész war)
 - Elevator feature
 - automatikusan a foglalt targethez hajtás
 - target info bezárás
