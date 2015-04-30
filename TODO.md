@@ -2,7 +2,6 @@ TODO
 
 HIGH
 
-- automatizálás
 - foglalás trade
 - Academy áttekintés
 - target historyban azt is írja, h mikor ment le a támadás

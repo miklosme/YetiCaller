@@ -1,6 +1,6 @@
 Meteor.methods({
-  registerAttack: function(warID, index) {
-    var user = Meteor.user();
+  registerAttack: function(warID, index, user) {
+    user || (user = Meteor.user());
     Wars.update({
       _id: warID,
       'targets.index': index
@@ -14,18 +14,30 @@ Meteor.methods({
         }
       },
       $set: {
-        'targets.$.bookedForName': Meteor.user().profile.name,
-        'targets.$.bookedForID': Meteor.user()._id
+        'targets.$.bookedForName': user.profile.name,
+        'targets.$.bookedForID': user._id
       }
     });
   },
   cancelAttack: removeReservation, // TODO: ide nem remove kell, hanem törlés az attacks-ból
+  autoReserve: function(warID, shiftValue) {
+    var war   = Wars.findOne(warID);
+    var start = Math.max(1, 1 + shiftValue);
+    var end   = Math.min(war.size, war.size + shiftValue);
+    var corrigation = shiftValue >= 0 ? 0 : Math.abs(shiftValue);
+    _.each(_.range(start, end + 1), function(index, position) {
+      var userID = _.findWhere(war.participants, {position: position + corrigation});
+      var user = Meteor.users.findOne(userID._id);
+      Meteor.call('registerAttack', warID, index, user);
+    });
+  },
   setResult: function(warID, index, playerID, result) {
     removeReservation(warID, index);
     handleAttacks(warID, index, playerID, result);
     // TODO: set "attacks" array data
     var war = Wars.findOne(warID);
     var target = _.findWhere(war.targets, {index: index});
+    var user = Meteor.users.findOne(playerID);
     if (target.starCount < result) {
       Wars.update({
         _id: warID,
@@ -33,7 +45,7 @@ Meteor.methods({
       }, {
         $set: {
           'targets.$.starCount': result,
-          'targets.$.bestAttackerName': Meteor.user().profile.name
+          'targets.$.bestAttackerName': user.profile.name
         }
       });
     }
