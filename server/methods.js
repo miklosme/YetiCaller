@@ -88,6 +88,7 @@ function handleAttacks(warID, index, playerID, result) {
   var $set = {};
   $set['targets.' + (index - 1) + '.attacks.$.stars'] = result;
   $set['targets.' + (index - 1) + '.attacks.$.isAttackDone'] = true;
+  $set['targets.' + (index - 1) + '.attacks.$.attackedAt'] = new Date();
   var $query = {};
   $query['_id'] = warID;
   $query['targets.' + (index - 1) + '.index'] = index;

@@ -59,6 +59,11 @@ Template.target.helpers({
   },
   'reversedAttacks': function() {
     return this.attacks.slice().reverse();
+  },
+  'time': function() {
+    var warCreatedAt = Template.parentData(2).createdAt;
+    var hours = (this.attackedAt - warCreatedAt) / 36e5;
+    return 'S+' + Math.floor(hours);
   }
 });
 
