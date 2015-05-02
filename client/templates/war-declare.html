@@ -41,20 +41,16 @@
             {{/if}}
           </div>
 
-          {{!<div class="input-symbol">
-            <span class="icon-enemy" title="War size"></span>
-            <select name="size" id="warsize" class="form_style">
-              <option value="50" selected="">50 vs 50</option>
-              <option value="45">45 vs 45</option>
-              <option value="40">40 vs 40</option>
-              <option value="35">35 vs 35</option>
-              <option value="30">30 vs 30</option>
-              <option value="25">25 vs 25</option>
-              <option value="20">20 vs 20</option>
-              <option value="15">15 vs 15</option>
-              <option value="10">10 vs 10</option>
-            </select>
-          </div>}}
+          <div class="automation">
+            <input type="checkbox" id="needauto">
+            <label for="needauto">Reserve automation</label>
+
+            <div class="auto-settings {{autoSettingsClass}}">
+              <label for="autovalue">Shifting: </label>
+              <input type="number" min="-50" max="50" step="1" id="autovalue" value="0">
+              <p>{{autoValueDisplay}}</p>
+            </div>
+          </div>
 
           <button type="submit" class="btn-primary">Declare!</button>
         </form>

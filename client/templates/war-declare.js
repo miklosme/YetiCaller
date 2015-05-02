@@ -1,5 +1,4 @@
 var ERRORS_KEY = 'warDeclareErrors';
-
 /*Template.warDeclare.onRendered(function() {
   makeMembersSortable();
 });*/
@@ -26,6 +25,8 @@ Template.warDeclare.onRendered(function() {
 
 Template.warDeclare.onCreated(function() {
   Session.set(ERRORS_KEY, {});
+  Session.set('needauto', false);
+  Session.set('autoReserveShiftValue', 0);
 });
 
 Template.warDeclare.helpers({
@@ -58,6 +59,15 @@ Template.warDeclare.helpers({
   },
   optin: function() {
     return Meteor.users.findOne({_id: this._id}).profile.optin;
+  },
+  autoSettingsClass: function() {
+    return Session.get('needauto') ? '' : 'hidden';
+  },
+  autoValueDisplay: function() {
+    var val = Session.get('autoReserveShiftValue');
+    var sign = (val < 0) ? '-' : '+';
+    var num = Math.abs(val);
+    return 'n -> n ' + sign + ' ' + num;
   }
 });
 
@@ -105,11 +115,14 @@ Template.warDeclare.events({
       "profile.optin": true
     });
 
+    var clanOrder = Clans.findOne(clanID).order;
+
     var participants = _.map(participantsCursor.fetch(), function(player) {
       return {
         _id: player._id,
         name: player.profile.name,
-        attacksLeft: 2
+        attacksLeft: 2,
+        position: clanOrder[player._id]
       }
     });
 
@@ -128,10 +141,20 @@ Template.warDeclare.events({
         return Session.set(ERRORS_KEY, {'none': error.reason});
       }
 
+      if (Session.get('needauto')) {
+        Meteor.call('autoReserve', _id, Session.get('autoReserveShiftValue'));
+      }
+
       Router.go('war', {_id: _id});
     });
   },
   'change input.optin': function (event) {
     Meteor.call("setOptin", this._id, event.target.checked);
+  },
+  'change input#needauto': function (event) {
+    Session.set('needauto', !!event.target.checked);
+  },
+  'change input#autovalue': function(event) {
+    Session.set('autoReserveShiftValue', +event.target.value);
   }
 });

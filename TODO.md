@@ -2,14 +2,14 @@ TODO
 
 HIGH
 
-- apk
-- insecure (!! regtokent ne küldje ki kliensre, szerveren kezelje)
-- automatizálás
-- gyorsnézet (egy screenen az egész war)
 - foglalás trade
 - Academy áttekintés
+- apk
 
 NORMAL
+- nem a legújabb war oldalakon jelezze ezt ki
+- insecure (!! regtokent ne küldje ki kliensre, szerveren kezelje)
+- gyorsnézet (egy screenen az egész war)
 - Elevator feature
 - automatikusan a foglalt targethez hajtás
 - target info bezárás
@@ -24,11 +24,3 @@ LOW
 - chat (facebook szerű)
 - loottarget
 - jelszóemlékeztető
-
-METEOR
-
-- YetiCaller
-- BlankMapper
-- Gomoku, Chess, etc
-- MinesweeperParty
-- Comment System
