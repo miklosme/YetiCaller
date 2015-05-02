@@ -4,10 +4,10 @@ HIGH
 
 - foglalás trade
 - Academy áttekintés
-- target historyban azt is írja, h mikor ment le a támadás
 - apk
 
 NORMAL
+- nem a legújabb war oldalakon jelezze ezt ki
 - insecure (!! regtokent ne küldje ki kliensre, szerveren kezelje)
 - gyorsnézet (egy screenen az egész war)
 - Elevator feature
@@ -24,11 +24,3 @@ LOW
 - chat (facebook szerű)
 - loottarget
 - jelszóemlékeztető
-
-METEOR
-
-- YetiCaller
-- BlankMapper
-- Gomoku, Chess, etc
-- MinesweeperParty
-- Comment System
