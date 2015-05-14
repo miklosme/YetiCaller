@@ -1,6 +1,9 @@
 Meteor.methods({
   registerAttack: function(warID, index, user) {
     user || (user = Meteor.user());
+    var war = Wars.findOne(warID);
+    var participant = _.findWhere(war.participants, {_id: user._id});
+    var bookedPlayerPosition = participant.position + 1;
     Wars.update({
       _id: warID,
       'targets.index': index
@@ -15,6 +18,7 @@ Meteor.methods({
       },
       $set: {
         'targets.$.bookedForName': user.profile.name,
+        'targets.$.bookedPlayerPosition': bookedPlayerPosition,
         'targets.$.bookedForID': user._id
       }
     });
@@ -38,6 +42,8 @@ Meteor.methods({
     var war = Wars.findOne(warID);
     var target = _.findWhere(war.targets, {index: index});
     var user = Meteor.users.findOne(playerID);
+    var participant = _.findWhere(war.participants, {_id: playerID});
+    var playerPosition = participant.position + 1;
     if (target.starCount < result) {
       Wars.update({
         _id: warID,
@@ -45,7 +51,8 @@ Meteor.methods({
       }, {
         $set: {
           'targets.$.starCount': result,
-          'targets.$.bestAttackerName': user.profile.name
+          'targets.$.bestAttackerName': user.profile.name,
+          'targets.$.bestAttackerPosition': playerPosition
         }
       });
     }

@@ -3,10 +3,14 @@ TODO
 HIGH
 
 - foglalás trade
-- Academy áttekintés
-- apk
+- "X ideig előjog a párodra / intervallumra"
+- eldereknek foglalás más nevében feature
+- tesztelni a war oldalt 50 főre
+
 
 NORMAL
+- apk
+- Academy áttekintés
 - nem a legújabb war oldalakon jelezze ezt ki
 - insecure (!! regtokent ne küldje ki kliensre, szerveren kezelje)
 - gyorsnézet (egy screenen az egész war)

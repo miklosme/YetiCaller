@@ -63,7 +63,7 @@ Template.target.helpers({
   'time': function() {
     var warCreatedAt = Template.parentData(2).createdAt;
     var hours = (this.attackedAt - warCreatedAt) / 36e5;
-    return 'S+' + Math.floor(hours);
+    return 'T-' + (24 - Math.floor(hours));
   }
 });
 

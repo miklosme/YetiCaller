@@ -3,7 +3,9 @@
     <div class="target-container {{myReservedTarget}}">
       <div class="stars-container">
         {{#if anyAttacks}}
-          <span class="attacker"><b>{{bestAttackerName}}</b></span>
+          <span class="attacker">
+            <b>{{bestAttackerName}} ({{bestAttackerPosition}}.)</b>
+          </span>
           <div class="stars">
             <span class="star {{star "1"}}"></span>
             <span class="star {{star "2"}}"></span>
@@ -15,7 +17,9 @@
       </div>
       <div class="register-container">
         {{#if isReserved}}
-          <span class="booked-name {{#unless canHandleReservation}}full-height{{/unless}}">{{bookedForName}}</span>
+          <span class="booked-name {{#unless canHandleReservation}}full-height{{/unless}}">
+            {{bookedForName}} ({{bookedPlayerPosition}}.)
+          </span>
           {{#if canHandleReservation}}
             <a href="#" class="cancel">cancel</a><br>
             <a href="#" class="set-result star0">Stars: 0</a>
